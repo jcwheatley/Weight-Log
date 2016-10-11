@@ -8,7 +8,15 @@
 <body ng-app="myApp" ng-controller="todoCtrl">
 
 <div class="window">
-<h2>Family History List</h2>
+<h2>Weight Log</h2>
+
+<ul class="navbar">
+  <li><a href="#" onclick="openCity('London')">Monday</a></li>
+  <li><a href="#" onclick="openCity('Paris')">Tuesday</a></li>
+  <li><a href="#" onclick="openCity('Tokyo')">Wednesday</a></li>
+  <li><a href="#" onclick="openCity('Tokyo')">Thursday</a></li>
+  <li><a href="#" onclick="openCity('Tokyo')">Friday</a></li>
+</ul>
 
 
 <form ng-submit="todoAdd()">
@@ -20,7 +28,7 @@
 
 <br>
 
-<div ng-repeat="x in todoList">
+<div ng-repeat="x in todoList" id="exercise">
     <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
 </div>
 

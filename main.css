@@ -3,11 +3,51 @@ body{
         float: center;
 }
 
+#exercise{
+
+}
+
 .window{
-                text-align: center;
+
+        text-align: center;
         color:white;
         background: #006699;
-        width: 50%;
+        width: 100%;
         padding: 10px;
 
+}
+
+
+.navbar{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+
+}
+
+.navbar li{
+	width:20%;
+	float:left;
+}
+
+.navbar li a,.navitem{
+	display:block;
+	padding:8px 16px;
+	text-decoration: none;
+	color:black;
+	background-color:#ccc;
+
+}
+
+.navbar li a:hover{
+	text-decoration: none;
+	color:white;
+	background-color:black;
+
+}
+
+.navbar{
+	background-color:#ccc;
+	color:#000
 }
