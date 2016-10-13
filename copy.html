@@ -64,7 +64,7 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('todoCtrl', function($scope) {
-  $scope.changeM = function(){
+	$scope.changeM = function(){
         console.log("here");
         $scope.n1 = 'Bench';
           $scope.w1 = 140;
@@ -80,6 +80,7 @@ app.controller('todoCtrl', function($scope) {
           $scope.r3 = 8;
           $scope.todoList = mList;
     };
+
     $scope.changeT = function(){
         $scope.n1 = 'Squat';
           $scope.w1 = 200;
@@ -97,55 +98,61 @@ app.controller('todoCtrl', function($scope) {
     };
    
   $scope.doneList = []; 
-  var d = new Date();
-  var today = d.getDay();
-  var mList = []; 
-  var tList = []; 
-  if(today == 1 || today == 3 || today == 6){   
-    $scope.changeM();
-  } else {
-    $scope.changeT();
+
+	var d = new Date();
+	var today = d.getDay();
+ 	var mList = []; 
+	var tList = []; 
+	if(today == 1 || today == 3 || today == 6){   
+	  $scope.changeM();
+	} else {
+	  $scope.changeT();
         }
-  $scope.todoAdd1 = function() {
-       $scope.todoList.push({
-     name: $scope.n1,
-     weight: $scope.w1,
-     reps: $scope.r1,
-     sets: $scope.s1,
-     done:false
-     });
+	$scope.todoAdd1 = function() {
+    	 $scope.todoList.push({
+    		 name: $scope.n1,
+    		 weight: $scope.w1,
+    		 reps: $scope.r1,
+    		 sets: $scope.s1,
+    		 done:false
+	     });
+
         $scope.n1 = "";
         $scope.w1 = "";
         $scope.r1 = "";
-  $scope.s1 = "";
+	      $scope.s1 = "";
     };
+
     $scope.todoAdd2 = function() {
-         $scope.todoList.push({
-                 name: $scope.n2,
-                 weight: $scope.w2,
-                 reps: $scope.r2,
-                 sets: $scope.s2,
-                 done:false
-           });
+        $scope.todoList.push({
+             name: $scope.n2,
+             weight: $scope.w2,
+             reps: $scope.r2,
+             sets: $scope.s2,
+             done:false
+       });
+
         $scope.n2 = "";
         $scope.w2 = "";
         $scope.r2 = "";
         $scope.s2 = "";
     };
+
     $scope.todoAdd3 = function() {
          $scope.todoList.push({
-                 name: $scope.n3,
-                 weight: $scope.w3,
-                 reps: $scope.r3,
-                 sets: $scope.s3,
-                 done:false
-           });
+             name: $scope.n3,
+             weight: $scope.w3,
+             reps: $scope.r3,
+             sets: $scope.s3,
+             done:false
+       });
+
         $scope.n3 = "";
         $scope.w3 = "";
         $scope.r3 = "";
         $scope.s3 = "";
     };
-   
+    
     $scope.finish = function() {
         var oldList = $scope.todoList;
         $scope.todoList = [];
