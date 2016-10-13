@@ -38,8 +38,12 @@
 <p><button ng-click="finish()">Finish Marked Exercises</button></p>
 </div>
 
-<div ng-repeat="x in doneList" id="done">
-    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+<div id="done">
+  <h2>Finished Exercises</h2>
+  <div ng-repeat="x in doneList">
+      Workout: <span ng-bind="x.name"></span>
+  | Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span>
+  </div>
 </div>
 
 <script>

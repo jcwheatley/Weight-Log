@@ -2,13 +2,15 @@
 <html>
 <head>
   <link rel="stylesheet" href="main.css">
+
+  <title>Weightlifting Log</title>
 </head>
 
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <body ng-app="myApp" ng-controller="todoCtrl">
 
 <div class="window">
-<h2>Weight Log</h2>
+<h2>Weightlifting Log</h2>
 
 <ul class="navbar">
   <li><a href="#" ng-click="changeM()">Monday</a></li>
@@ -18,13 +20,15 @@
   <li><a href="#" ng-click="changeM()">Friday</a></li>
 </ul>
 
+<h3>Add your exercises for the day</h3>
+
 
 <form ng-submit="todoAdd1()">
     <input type="text" ng-model="n1" size="20" placeholder="{{n1}}">
     <input type="number" ng-model="w1" size="20" placeholder="{{w1}}">
     <input type="number" ng-model="s1" size="20" placeholder="{{s1}}">
     <input type="number" ng-model="r1" size="20" placeholder="{{r1}}">
-    <input type="submit" value="Add New">
+    <input type="submit" value="Add to workout">
 </form>
 
 <form ng-submit="todoAdd2()">
@@ -32,7 +36,7 @@
     <input type="number" ng-model="w2" size="20" placeholder="{{w2}}">
     <input type="number" ng-model="s2" size="20" placeholder="{{s2}}">
     <input type="number" ng-model="r2" size="20" placeholder="{{r2}}">
-    <input type="submit" value="Add New">
+    <input type="submit" value="Add to workout">
 </form>
 
 <form ng-submit="todoAdd3()">
@@ -40,7 +44,7 @@
     <input type="number" ng-model="w3" size="20" placeholder="{{w3}}">
     <input type="number" ng-model="s3" size="20" placeholder="{{s3}}">
     <input type="number" ng-model="r3" size="20" placeholder="{{r3}}">
-    <input type="submit" value="Add New">
+    <input type="submit" value="Add to workout">
 </form>
 
 <br>
@@ -56,9 +60,12 @@
 <p><button ng-click="finish()">Finish Marked Exercises</button></p>
 </div>
 
-<div ng-repeat="x in doneList" id="done">
-    <input type="checkbox" ng-model="x.done">Workout: <span ng-bind="x.name"></span>
-| Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span>
+<div id="done">
+  <h2>Finished Exercises:</h2>
+  <div ng-repeat="x in doneList">
+      Workout: <span ng-bind="x.name"></span>
+  | Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span>
+  </div>
 </div>
 
 <script>
@@ -152,7 +159,7 @@ app.controller('todoCtrl', function($scope) {
         $scope.r3 = "";
         $scope.s3 = "";
     };
-    
+
     $scope.finish = function() {
         var oldList = $scope.todoList;
         $scope.todoList = [];

@@ -1,6 +1,12 @@
 body{
         font-family:'Open Sans',sans-serif;
         float: center;
+        background: url("http://news.doubletree.com/assets/DBTR/properties/International/DBT_Jumeriah_Beach/October/DTbH_Dubai_Jumeirah_Beach_Gym_HR.jpg");
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        overflow:hidden;
 }
 
 #header p{
@@ -11,15 +17,17 @@ body{
 #done{
 	background-color: black;
 	color: white;
+	background-color:rgba(0, 0, 0, .25);
+	padding-left: 5px;
+	border-radius: 5px;
 }
 
 .window{
 
         text-align: center;
         color:white;
-        background: #006699;
+        /*background: #006699;*/
         width: 100%;
-        padding: 10px;
 
 }
 
@@ -29,6 +37,7 @@ body{
 	margin:0;
 	padding:0;
 	overflow:hidden;
+	border-radius: 5px;
 
 }
 
@@ -52,6 +61,7 @@ body{
 	background-color:black;
 
 }
+
 
 .navbar{
 	background-color:#ccc;
