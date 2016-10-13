@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="todoCtrl">
+
+<div class="window">
+<h2>Weight Log</h2>
+
+<ul class="navbar">
+  <li><a href="#" onclick="chooseDay('Monday')">Monday</a></li>
+  <li><a href="#" onclick="chooseDay('Tuesday')">Tuesday</a></li>
+  <li><a href="#" onclick="chooseDay('Wednesday')">Wednesday</a></li>
+  <li><a href="#" onclick="chooseDay('Thursday')">Thursday</a></li>
+  <li><a href="#" onclick="chooseDay('Friday')">Friday</a></li>
+</ul>
+
+
+<form ng-submit="todoAdd()">
+    <input type="text" ng-model="name" size="20" placeholder="Workout Name">
+    <input type="number" ng-model="weight" size="20" placeholder="Weight">
+    <input type="number" ng-model="sets" size="20" placeholder="Sets">
+    <input type="number" ng-model="reps" size="20" placeholder="Reps">
+    <input type="submit" value="Add New">
+</form>
+
+<br>
+
+<div ng-repeat="x in todoList" id="exercise">
+    <input type="checkbox" ng-model="x.done">Workout: <span ng-bind="x.name"></span>
+| Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span></div>
+
+
+
+<p><button ng-click="finish()">Finish Marked Exercises</button></p>
+</div>
+
+<div ng-repeat="x in doneList" id="done">
+    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('todoCtrl', function($scope) {
+   
+    $scope.todoList = [];
+    $scope.doneList = []; 
+
+    $scope.todoAdd = function() {
+        $scope.todoList.push({todoText:$scope.person + ", " + $scope.father + ", " + $scope.mother, done:false});
+        $scope.person = "";
+        $scope.father = "";
+        $scope.mother = "";
+    };
+
+    $scope.finish = function() {
+        var oldList = $scope.todoList;
+        $scope.todoList = [];
+        angular.forEach(oldList, function(x) {
+            if (!x.done) {
+              $scope.todoList.push(x);
+            }
+            else{
+              $scope.doneList.push({x});
+              $scope.person = "";
+              $scope.father = "";
+              $scope.mother = "";
+            }
+        });
+
+    };
+});
+</script>
+
+</body>

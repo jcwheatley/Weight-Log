@@ -29,16 +29,27 @@
 
 <br>
 
+
 <div ng-repeat="x in todoList" id="exercise">
     <input type="checkbox" ng-model="x.done">Workout: <span ng-bind="x.name"></span>
 | Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span></div>
 
-<p><button ng-click="remove()">Remove marked</button></p>
+
+
+<p><button ng-click="finish()">Finish Marked Exercises</button></p>
+</div>
+
+<div ng-repeat="x in doneList" id="done">
+    <input type="checkbox" ng-model="x.done">Workout: <span ng-bind="x.name"></span>
+| Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span>
 </div>
 
 <script>
 var app = angular.module('myApp', []);
 app.controller('todoCtrl', function($scope) {
+   
+  $scope.doneList = []; 
+
 	var d = new Date();
 	var today = d.getDay();
  	var mList = [
@@ -63,17 +74,18 @@ app.controller('todoCtrl', function($scope) {
 	  $scope.todoList = tList;
         }
 	$scope.todoAdd = function() {
-        $scope.todoList.push({
+     $scope.todoList.push({
 		 name: $scope.name,
 		 weight: $scope.weight,
 		 reps: $scope.reps,
 		 sets: $scope.sets
 		 //done:false
-	});
+	   });
+
         $scope.name = "Workout Name";
         $scope.weight = "Weight";
         $scope.reps = "Reps";
-	$scope.sets = "Sets";
+	      $scope.sets = "Sets";
     };
 
     $scope.changeM = function(){
@@ -85,12 +97,18 @@ app.controller('todoCtrl', function($scope) {
 	$scope.todoList = tList;
     };
 
-    $scope.remove = function() {
+    $scope.finish = function() {
         var oldList = $scope.todoList;
         $scope.todoList = [];
         angular.forEach(oldList, function(x) {
-            if (!x.done) $scope.todoList.push(x);
+            if (!x.done) {
+              $scope.todoList.push(x);
+            }
+            else{
+              $scope.doneList.push(x);
+            }
         });
+
     };
 });
 </script>
