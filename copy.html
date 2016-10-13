@@ -40,7 +40,7 @@
 </div>
 
 <div ng-repeat="x in doneList" id="done">
-    <input type="checkbox" ng-model="x.done">Workout: <span ng-bind="x.name"></span>
+    Workout: <span ng-bind="x.name"></span>
 | Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span>
 </div>
 
@@ -82,10 +82,10 @@ app.controller('todoCtrl', function($scope) {
 		 //done:false
 	   });
 
-        $scope.name = "Workout Name";
-        $scope.weight = "Weight";
-        $scope.reps = "Reps";
-	      $scope.sets = "Sets";
+        $scope.name = "";
+        $scope.weight = "";
+        $scope.reps = "";
+	      $scope.sets = "";
     };
 
     $scope.changeM = function(){
