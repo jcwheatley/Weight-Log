@@ -11,11 +11,11 @@
 <h2>Weight Log</h2>
 
 <ul class="navbar">
-  <li><a href="#" onclick="openCity('London')">Monday</a></li>
-  <li><a href="#" onclick="openCity('Paris')">Tuesday</a></li>
-  <li><a href="#" onclick="openCity('Tokyo')">Wednesday</a></li>
-  <li><a href="#" onclick="openCity('Tokyo')">Thursday</a></li>
-  <li><a href="#" onclick="openCity('Tokyo')">Friday</a></li>
+  <li><a href="#" ng-click="changeM()">Monday</a></li>
+  <li><a href="#" ng-click="changeT()">Tuesday</a></li>
+  <li><a href="#" ng-click="changeM()">Wednesday</a></li>
+  <li><a href="#" ng-click="changeT()">Thursday</a></li>
+  <li><a href="#" ng-click="changeM()">Friday</a></li>
 </ul>
 
 
@@ -41,20 +41,26 @@ var app = angular.module('myApp', []);
 app.controller('todoCtrl', function($scope) {
 	var d = new Date();
 	var today = d.getDay();
- 	if(today == 1 || today == 3 || today == 6){   
-	 $scope.todoList = [
-	  {name: 'Bench',
-	  weight: 140,
-	  reps: '8',
-	  sets: '3'}
-	 ];       
+ 	var mList = [
+          {name: 'Bench',
+          weight: 140,
+          reps: '8',
+          sets: '3',
+	  done : false}
+         ]; 
+	var tList = [
+          {name: 'Squat',
+          weight: 200,
+          reps: '8',
+          sets: '3',
+	  done : false}
+         ]; 
+	if(today == 1 || today == 3 || today == 6){   
+	// $scope.changeM();      
+	  $scope.todoList = mList;
 	} else {
-	 $scope.todoList = [
-	  {name: 'Squat',
-	  weight: 200,
-	  reps: '8',
-	  sets: '3'}
-	 ]; 
+	// $scope.changeT();
+	  $scope.todoList = tList;
         }
 	$scope.todoAdd = function() {
         $scope.todoList.push({
@@ -68,6 +74,15 @@ app.controller('todoCtrl', function($scope) {
         $scope.weight = "Weight";
         $scope.reps = "Reps";
 	$scope.sets = "Sets";
+    };
+
+    $scope.changeM = function(){
+	
+	$scope.todoList = mList;
+    };
+
+    $scope.changeT = function(){
+	$scope.todoList = tList;
     };
 
     $scope.remove = function() {
