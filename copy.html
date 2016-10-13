@@ -20,17 +20,18 @@
 
 
 <form ng-submit="todoAdd()">
-    <input type="text" ng-model="person" size="20" placeholder="Person">
-    <input type="text" ng-model="father" size="20" placeholder="Father">
-    <input type="text" ng-model="mother" size="20" placeholder="Mother">
+    <input type="text" ng-model="name" size="20" placeholder="Workout Name">
+    <input type="number" ng-model="weight" size="20" placeholder="Weight">
+    <input type="number" ng-model="sets" size="20" placeholder="Sets">
+    <input type="number" ng-model="reps" size="20" placeholder="Reps">
     <input type="submit" value="Add New">
 </form>
 
 <br>
 
 <div ng-repeat="x in todoList" id="exercise">
-    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
-</div>
+    <input type="checkbox" ng-model="x.done">Workout: <span ng-bind="x.name"></span>
+| Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span></div>
 
 <p><button ng-click="remove()">Remove marked</button></p>
 </div>
@@ -38,13 +39,35 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('todoCtrl', function($scope) {
-   
-        $scope.todoList = []; 
-        $scope.todoAdd = function() {
-        $scope.todoList.push({todoText:$scope.person + ", " + $scope.father + ", " + $scope.mother, done:false});
-        $scope.person = "";
-        $scope.father = "";
-        $scope.mother = "";
+	var d = new Date();
+	var today = d.getDay();
+ 	if(today == 1 || today == 3 || today == 6){   
+	 $scope.todoList = [
+	  {name: 'Bench',
+	  weight: 140,
+	  reps: '8',
+	  sets: '3'}
+	 ];       
+	} else {
+	 $scope.todoList = [
+	  {name: 'Squat',
+	  weight: 200,
+	  reps: '8',
+	  sets: '3'}
+	 ]; 
+        }
+	$scope.todoAdd = function() {
+        $scope.todoList.push({
+		 name: $scope.name,
+		 weight: $scope.weight,
+		 reps: $scope.reps,
+		 sets: $scope.sets
+		 //done:false
+	});
+        $scope.name = "Workout Name";
+        $scope.weight = "Weight";
+        $scope.reps = "Reps";
+	$scope.sets = "Sets";
     };
 
     $scope.remove = function() {
