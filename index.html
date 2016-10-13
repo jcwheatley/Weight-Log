@@ -11,11 +11,11 @@
 <h2>Weight Log</h2>
 
 <ul class="navbar">
-  <li><a href="#" onclick="openCity('London')">Monday</a></li>
-  <li><a href="#" onclick="openCity('Paris')">Tuesday</a></li>
-  <li><a href="#" onclick="openCity('Tokyo')">Wednesday</a></li>
-  <li><a href="#" onclick="openCity('Tokyo')">Thursday</a></li>
-  <li><a href="#" onclick="openCity('Tokyo')">Friday</a></li>
+  <li><a href="#" onclick="chooseDay('Monday')">Monday</a></li>
+  <li><a href="#" onclick="chooseDay('Tuesday')">Tuesday</a></li>
+  <li><a href="#" onclick="chooseDay('Wednesday')">Wednesday</a></li>
+  <li><a href="#" onclick="chooseDay('Thursday')">Thursday</a></li>
+  <li><a href="#" onclick="chooseDay('Friday')">Friday</a></li>
 </ul>
 
 
@@ -28,31 +28,48 @@
 
 <br>
 
-<div ng-repeat="x in todoList" id="exercise">
+<div ng-repeat="x in todoList" id="todo">
     <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
 </div>
 
-<p><button ng-click="remove()">Remove marked</button></p>
+
+
+<p><button ng-click="finish()">Finish Marked Exercises</button></p>
+</div>
+
+<div ng-repeat="x in doneList" id="done">
+    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
 </div>
 
 <script>
 var app = angular.module('myApp', []);
 app.controller('todoCtrl', function($scope) {
    
-        $scope.todoList = []; 
-        $scope.todoAdd = function() {
+    $scope.todoList = [];
+    $scope.doneList = []; 
+
+    $scope.todoAdd = function() {
         $scope.todoList.push({todoText:$scope.person + ", " + $scope.father + ", " + $scope.mother, done:false});
         $scope.person = "";
         $scope.father = "";
         $scope.mother = "";
     };
 
-    $scope.remove = function() {
+    $scope.finish = function() {
         var oldList = $scope.todoList;
         $scope.todoList = [];
         angular.forEach(oldList, function(x) {
-            if (!x.done) $scope.todoList.push(x);
+            if (!x.done) {
+              $scope.todoList.push(x);
+            }
+            else{
+              $scope.doneList.push({x});
+              $scope.person = "";
+              $scope.father = "";
+              $scope.mother = "";
+            }
         });
+
     };
 });
 </script>

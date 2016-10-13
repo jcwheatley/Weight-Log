@@ -3,8 +3,14 @@ body{
         float: center;
 }
 
-#exercise{
+#header p{
+	color: blue;
 
+}
+
+#done{
+	background-color: black;
+	color: white;
 }
 
 .window{
