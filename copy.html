@@ -29,6 +29,7 @@
 
 <br>
 
+
 <div ng-repeat="x in todoList" id="exercise">
     <input type="checkbox" ng-model="x.done">Workout: <span ng-bind="x.name"></span>
 | Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span></div>
@@ -39,21 +40,49 @@
 </div>
 
 <div ng-repeat="x in doneList" id="done">
-    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+    <input type="checkbox" ng-model="x.done">Workout: <span ng-bind="x.name"></span>
+| Weight: <span ng-bind="x.weight"></span> | Sets: <span ng-bind="x.sets"></span> | Reps: <span ng-bind="x.reps"></span>
 </div>
 
 <script>
 var app = angular.module('myApp', []);
 app.controller('todoCtrl', function($scope) {
    
-    $scope.todoList = [];
-    $scope.doneList = []; 
+  $scope.doneList = []; 
 
-    $scope.todoAdd = function() {
-        $scope.todoList.push({todoText:$scope.person + ", " + $scope.father + ", " + $scope.mother, done:false});
-        $scope.person = "";
-        $scope.father = "";
-        $scope.mother = "";
+	var d = new Date();
+	var today = d.getDay();
+
+ 	if(today == 1 || today == 3 || today == 6){   
+	 $scope.todoList = [
+	  {name: 'Bench',
+	  weight: 140,
+	  reps: '8',
+	  sets: '3'}
+	 ];       
+	} 
+  else {
+	 $scope.todoList = [
+	  {name: 'Squat',
+	  weight: 200,
+	  reps: '8',
+	  sets: '3'}
+	 ]; 
+  }
+
+	$scope.todoAdd = function() {
+     $scope.todoList.push({
+		 name: $scope.name,
+		 weight: $scope.weight,
+		 reps: $scope.reps,
+		 sets: $scope.sets
+		 //done:false
+	   });
+
+        $scope.name = "Workout Name";
+        $scope.weight = "Weight";
+        $scope.reps = "Reps";
+	      $scope.sets = "Sets";
     };
 
     $scope.finish = function() {
@@ -64,10 +93,7 @@ app.controller('todoCtrl', function($scope) {
               $scope.todoList.push(x);
             }
             else{
-              $scope.doneList.push({x});
-              $scope.person = "";
-              $scope.father = "";
-              $scope.mother = "";
+              $scope.doneList.push(x);
             }
         });
 
